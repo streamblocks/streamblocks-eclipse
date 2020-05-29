@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: streamblocks.eclipse
+Bundle-ManifestVersion: 2
+Bundle-Name: streamblocks.eclipse
+Bundle-Vendor: streamgenomics sarl
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: streamblocks.eclipse; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: streamblocks.eclipse.cal,
+ streamblocks.eclipse.cal.cal.impl,
+ streamblocks.eclipse.cal.cal.util,
+ streamblocks.eclipse.cal.services,
+ streamblocks.eclipse.cal.serializer,
+ streamblocks.eclipse.cal.cal,
+ streamblocks.eclipse.cal.scoping,
+ streamblocks.eclipse.cal.validation,
+ streamblocks.eclipse.cal.generator,
+ streamblocks.eclipse.cal.parser.antlr.internal,
+ streamblocks.eclipse.cal.parser.antlr
+Import-Package: org.apache.log4j

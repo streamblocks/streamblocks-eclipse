@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: streamblocks.eclipse.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: streamblocks.eclipse.ide
+Bundle-Vendor: streamgenomics sarl
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: streamblocks.eclipse.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: streamblocks.eclipse,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: streamblocks.eclipse.cal.ide.contentassist.antlr.internal,
+ streamblocks.eclipse.cal.ide.contentassist.antlr

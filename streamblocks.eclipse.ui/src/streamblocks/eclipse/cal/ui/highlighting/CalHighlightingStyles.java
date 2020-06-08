@@ -72,4 +72,6 @@ public interface CalHighlightingStyles extends HighlightingStyles {
 	static final String TYPE_REFERENCE_ID = "type_reference";
 	
 	static final String FSM_STATE_ID = "fsm_state";
+	
+	static final String ANNOTATIONS_ID = "annotations";
 }

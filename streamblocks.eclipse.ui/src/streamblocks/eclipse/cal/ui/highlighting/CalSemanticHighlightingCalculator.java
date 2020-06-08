@@ -37,6 +37,7 @@ package streamblocks.eclipse.cal.ui.highlighting;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.DefaultSemanticHighlightingCalculator;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
@@ -128,15 +129,15 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 				} else if (ga.getAstTypeAccess().getNameAstTypeUserCrossReference_1_1_0_0() == node
 						.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.CALLABLE_ID);
-				} else if(ga.getAstTransitionAccess().getSourceAstStateCrossReference_0_0()== node.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(),
-							CalHighlightingConfiguration.FSM_STATE_ID);
-				} else if(ga.getAstTransitionAccess().getTargetAstStateCrossReference_6_0()== node.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(),
-							CalHighlightingConfiguration.FSM_STATE_ID);
-				} else if(ga.getAstScheduleAccess().getInitialStateAstStateCrossReference_2_0()== node.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(),
-							CalHighlightingConfiguration.FSM_STATE_ID);
+				} else if (ga.getAstTransitionAccess().getSourceAstStateCrossReference_0_0() == node
+						.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.FSM_STATE_ID);
+				} else if (ga.getAstTransitionAccess().getTargetAstStateCrossReference_6_0() == node
+						.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.FSM_STATE_ID);
+				} else if (ga.getAstScheduleAccess().getInitialStateAstStateCrossReference_2_0() == node
+						.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.FSM_STATE_ID);
 				}
 			} else if (node.getGrammarElement() instanceof RuleCall) {
 				if (ga.getAstActorAccess().getNameIDTerminalRuleCall_2_0() == node.getGrammarElement()) {
@@ -202,21 +203,33 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 				} else if (ga.getAstTypeDefinitionAccess().getNameIDTerminalRuleCall_1_0() == node
 						.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.TYPE_ID);
-				} else if (ga.getAstTaggedTupleAccess().getNameIDTerminalRuleCall_0_0() == node
-						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
+				} else if (ga.getAstTaggedTupleAccess().getNameIDTerminalRuleCall_0_0() == node.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
 				} else if (ga.getAstExpressionSymbolReferenceAccess().getCtorIDTerminalRuleCall_4_1_0() == node
 						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
 				} else if (ga.getAstPatternDeconstructionAccess().getNameIDTerminalRuleCall_0_0() == node
 						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
 				} else if (ga.getAstPatternAliasAccess().getAliasAstPatternDeclarationParserRuleCall_0_0_0() == node
 						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
-				} else if(ga.getAstAssignParameterAccess().getNameIDTerminalRuleCall_0_0() == node.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
+				} else if (ga.getAstAssignParameterAccess().getNameIDTerminalRuleCall_0_0() == node
+						.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							CalHighlightingConfiguration.GLOBAL_VARIABLE_REFERENCE_ID);
+				} else if (ga.getAstAnnotationAccess().getNameIDTerminalRuleCall_1_0() == node.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.ANNOTATIONS_ID);
+				}
+			} else if (node.getGrammarElement() instanceof Keyword) {
+				if (ga.getAstAnnotationAccess().getCommercialAtKeyword_0() == node.getGrammarElement()) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							CalHighlightingConfiguration.ANNOTATIONS_ID);
 				}
 			}
 		}

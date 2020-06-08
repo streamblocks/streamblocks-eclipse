@@ -41,6 +41,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
@@ -102,6 +103,11 @@ public class CalProposalProvider extends AbstractCalProposalProvider {
 		}
 	}
 
+	@Override
+	public void completeAstExpressionSymbolReference_Ctor(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	
 	private List<ICompletionProposal> completeAstStructureStatementConnection(Boolean isInput, AstEntityExpr entity,
 			ContentAssistContext context) {
 		List<ICompletionProposal> proposals = new ArrayList<>();

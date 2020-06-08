@@ -95,6 +95,8 @@ public class CalHighlightingConfiguration implements IHighlightingConfiguration 
 	public static final String CALLABLE_ID = CalHighlightingStyles.CALLABLE_ID;
 	
 	public static final String FSM_STATE_ID = CalHighlightingStyles.FSM_STATE_ID;
+	
+	public static final String ANNOTATIONS_ID = CalHighlightingStyles.ANNOTATIONS_ID;
 
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
@@ -124,6 +126,8 @@ public class CalHighlightingConfiguration implements IHighlightingConfiguration 
 		acceptor.acceptDefaultHighlighting(TYPE_ID, "Type name", typeTextStyle(true));
 		acceptor.acceptDefaultHighlighting(TYPE_REFERENCE_ID, "Type reference name", typeTextStyle(false));
 		acceptor.acceptDefaultHighlighting(FSM_STATE_ID, "FSM State name", fsmStateTextStyle());
+		
+		acceptor.acceptDefaultHighlighting(ANNOTATIONS_ID, "Annotations name", annotationsTextStyle());
 	}
 
 	public TextStyle defaultTextStyle() {
@@ -257,6 +261,14 @@ public class CalHighlightingConfiguration implements IHighlightingConfiguration 
 	public TextStyle fsmStateTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setColor(new RGB(151, 117, 168));
+		
+		return textStyle;
+	}
+	
+	public TextStyle annotationsTextStyle() {
+		TextStyle textStyle = defaultTextStyle().copy();
+		textStyle.setColor(new RGB(142, 142, 142));
+		textStyle.setStyle(SWT.ITALIC);
 		
 		return textStyle;
 	}

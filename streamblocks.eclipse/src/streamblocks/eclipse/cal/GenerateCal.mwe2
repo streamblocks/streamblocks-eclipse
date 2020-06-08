@@ -80,7 +80,7 @@ Workflow {
 				generateDeprecationValidation = true
 			}
 			generator = {
-				generateXtendStub = true
+				generateXtendStub = false
 			}
 
 			parserGenerator = {
@@ -89,7 +89,12 @@ Workflow {
 					backtrack = false
 				}
 			}
-
+			
+			formatter = {
+				generateStub = true
+				generateXtendStub = false
+			}
+			
 			junitSupport = {
 				junitVersion = "5"
 			}

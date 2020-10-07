@@ -2,8 +2,14 @@
 build/
 !**/src/**/build
 !**/xtend-gen/**/build
+
+
 bin/
 target/
+xtend-gen/
+src-gen/
+.metadata
+.settings
 .gradle/
 *._trace
 *.xtendbin

@@ -90,11 +90,6 @@ Workflow {
 				}
 			}
 			
-			formatter = {
-				generateStub = true
-				generateXtendStub = false
-			}
-			
 			junitSupport = {
 				junitVersion = "5"
 			}

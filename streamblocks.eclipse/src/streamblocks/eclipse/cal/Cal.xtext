@@ -122,7 +122,7 @@ AstNetwork:
 
 	// -- AstExprEntity
 AstEntityDeclaration returns AstEntityVariable:
-	name=ID '=' entity=AstEntityExpr ';';
+	name=ID '=' entity=AstEntityExpr ('{'(attribute+=AstAttribute)* '}')? ';';
 
 AstEntityExpr:
 	AstEntityInstanceExpr
@@ -159,12 +159,12 @@ AstStructureStatementConnection:
 	(from=AstEntityVariableReference ('[' fromIndexes+=AstExpression ']')* '.')? outPort=ID
 	'-->'
 	(to=AstEntityVariableReference ('[' fromIndexes+=AstExpression ']')* '.')? inPort=ID ('{'
-	(attribute+=AstConnectionAttribute)* '}')? ';';
+	(attribute+=AstAttribute)* '}')? ';';
 
 AstEntityVariableReference:
 	variable=[AstEntityVariable];
 
-AstConnectionAttribute:
+AstAttribute:
 	name=ID '=' value=AstExpression ";";
 
 AstStructureStatementForeach:

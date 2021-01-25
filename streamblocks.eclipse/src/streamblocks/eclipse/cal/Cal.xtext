@@ -480,7 +480,8 @@ AstStatementAlternative:
 	'do' (statements+=AstStatement)* 'end');
 
 AstStatement:
-	AstStatementAssign
+	(annotations+=AstAnnotation)*
+	statement = (AstStatementAssign
 	| AstStatementCall
 	| AstStatementForeach
 	| AstStatementIf
@@ -488,7 +489,7 @@ AstStatement:
 	| AstStatementWrite
 	| AstStatementWhile
 	| AstStatementBlock
-	| AstStatementCase;
+	| AstStatementCase);
 
 	// -- /////////////////////////////////////////////////////////////////////////////
 // expressions
@@ -751,7 +752,7 @@ AstAnnotation:
 	'@' name=ID ('(' arguments+=AstAnnotationArgument (',' arguments+=AstAnnotationArgument)* ')')?;
 
 AstAnnotationArgument:
-	name=ID '=' value=STRING;
+	name=ID '=' value=AstExpression;
 
 // -- /////////////////////////////////////////////////////////////////////////////
 // hidden symbols

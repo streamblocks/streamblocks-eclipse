@@ -57,6 +57,7 @@
     <genClasses ecoreClass="Cal.ecore#//AstEntityVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstEntityVariable/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityVariable/entity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityVariable/attribute"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstEntityExpr"/>
     <genClasses ecoreClass="Cal.ecore#//AstEntityInstanceExpr">
@@ -91,9 +92,9 @@
     <genClasses ecoreClass="Cal.ecore#//AstEntityVariableReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityVariableReference/variable"/>
     </genClasses>
-    <genClasses ecoreClass="Cal.ecore#//AstConnectionAttribute">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstConnectionAttribute/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstConnectionAttribute/value"/>
+    <genClasses ecoreClass="Cal.ecore#//AstAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAttribute/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAttribute/value"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstStructureStatementForeach">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementForeach/generators"/>
@@ -263,7 +264,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStatementAlternative/guards"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStatementAlternative/statements"/>
     </genClasses>
-    <genClasses ecoreClass="Cal.ecore#//AstStatement"/>
+    <genClasses ecoreClass="Cal.ecore#//AstStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStatement/annotations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStatement/statement"/>
+    </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstExpression"/>
     <genClasses ecoreClass="Cal.ecore#//AstExpressionSymbolReference">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstExpressionSymbolReference/annotations"/>
@@ -379,7 +383,7 @@
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstAnnotationArgument">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAnnotationArgument/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAnnotationArgument/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAnnotationArgument/value"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstTuple"/>
     <genClasses ecoreClass="Cal.ecore#//AstFunction">

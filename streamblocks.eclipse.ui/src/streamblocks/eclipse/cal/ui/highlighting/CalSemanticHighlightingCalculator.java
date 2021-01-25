@@ -257,5 +257,4 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 		}
 
 	}
-
 }

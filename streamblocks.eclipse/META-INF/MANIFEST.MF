@@ -13,17 +13,20 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.eclipse.xtext.util,
  org.eclipse.emf.common,
- org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.jdt.core,
+ org.eclipse.core.resources
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: streamblocks.eclipse.cal,
+ streamblocks.eclipse.cal.cal,
  streamblocks.eclipse.cal.cal.impl,
  streamblocks.eclipse.cal.cal.util,
- streamblocks.eclipse.cal.services,
- streamblocks.eclipse.cal.serializer,
- streamblocks.eclipse.cal.cal,
- streamblocks.eclipse.cal.scoping,
- streamblocks.eclipse.cal.validation,
  streamblocks.eclipse.cal.generator,
+ streamblocks.eclipse.cal.parser.antlr,
  streamblocks.eclipse.cal.parser.antlr.internal,
- streamblocks.eclipse.cal.parser.antlr
+ streamblocks.eclipse.cal.scoping,
+ streamblocks.eclipse.cal.serializer,
+ streamblocks.eclipse.cal.services,
+ streamblocks.eclipse.cal.util,
+ streamblocks.eclipse.cal.validation
 Import-Package: org.apache.log4j

@@ -69,6 +69,7 @@ import streamblocks.eclipse.cal.cal.AstTaggedTuple;
 import streamblocks.eclipse.cal.cal.AstTypeDefinitionParameter;
 import streamblocks.eclipse.cal.cal.AstTypeUser;
 import streamblocks.eclipse.cal.cal.AstVariable;
+import streamblocks.eclipse.cal.cal.FormalParameter;
 import streamblocks.eclipse.cal.util.Util;
 
 public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
@@ -130,7 +131,12 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_AstVariable(AstActor actor, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
-		elements.addAll(actor.getParameters());
+		
+		for(FormalParameter param: actor.getParameters()) {
+			if(param.getVarParam() != null) {
+				elements.add(param.getVarParam());
+			}
+		}
 		elements.addAll(actor.getStateVariables());
 		elements.addAll(actor.getFunctions());
 
@@ -141,18 +147,49 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		AstNetwork network = (AstNetwork) decl.eContainer();
 		List<AstVariable> elements = new ArrayList<AstVariable>();
 		elements.addAll(network.getVariables());
-		elements.addAll(network.getParameters());
+		for(FormalParameter param: network.getParameters()) {
+			if(param.getVarParam() != null) {
+				elements.add(param.getVarParam());
+			}
+		}
 		return Scopes.scopeFor(elements, getScope(network, reference));
 	}
 
 	public IScope scope_AstVariable(AstNetwork network, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
-		elements.addAll(network.getParameters());
+		for(FormalParameter param: network.getParameters()) {
+			if(param.getVarParam() != null) {
+				elements.add(param.getVarParam());
+			}
+		}
 		elements.addAll(network.getVariables());
 
 		return Scopes.scopeFor(elements, delegateGetScope(network, reference));
 	}
+	
+	public IScope scope_AstTypeUser(AstNetwork network, EReference reference) {
+		List<AstTypeUser> elements = new ArrayList<AstTypeUser>();
+		for(FormalParameter param: network.getParameters()) {
+			if(param.getTypeParam() != null) {
+				elements.add(param.getTypeParam()); 
+			}
+		}
 
+		return Scopes.scopeFor(elements, delegateGetScope(network, reference));
+	}
+	
+	public IScope scope_AstTypeUser(AstActor actor, EReference reference) {
+		List<AstTypeUser> elements = new ArrayList<AstTypeUser>();
+		for(FormalParameter param: actor.getParameters()) {
+			if(param.getTypeParam() != null) {
+				elements.add(param.getTypeParam()); 
+			}
+		}
+
+		return Scopes.scopeFor(elements, delegateGetScope(actor, reference));
+	}
+	
+	
 	public IScope scope_AstVariable(AstExpressionList list, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
 		for (AstGenerator generator : list.getGenerators()) {
@@ -215,7 +252,8 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 		return Scopes.scopeFor(typeParameters, getScope(typedef, reference));
 	}
-
+	
+	
 	public IScope scope_AstVariable(AstTaggedTuple tuple, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
 		AstTypeUser typedef = (AstTypeUser) tuple.eContainer();

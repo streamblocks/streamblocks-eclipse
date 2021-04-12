@@ -65,8 +65,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityInstanceExpr/parameters"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstAssignParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAssignParameter/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignParameter/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignParameter/var"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignParameter/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Cal.ecore#//AstAssignVarParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAssignVarParameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignVarParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Cal.ecore#//AstAssignTypeParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstAssignTypeParameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignTypeParameter/value"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstEntityIfExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityIfExpr/condition"/>
@@ -156,6 +164,10 @@
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstExternalFunction"/>
     <genClasses ecoreClass="Cal.ecore#//AstExternalProcedure"/>
+    <genClasses ecoreClass="Cal.ecore#//FormalParameter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//FormalParameter/typeParam"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//FormalParameter/varParam"/>
+    </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstTag">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstTag/identifiers"/>
     </genClasses>

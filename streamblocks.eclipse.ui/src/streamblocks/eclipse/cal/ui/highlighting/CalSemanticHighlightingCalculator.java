@@ -218,10 +218,10 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 						.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							CalHighlightingConfiguration.LOCAL_VARIABLE_REFERNCE_ID);
-				} else if (ga.getAstAssignParameterAccess().getNameIDTerminalRuleCall_0_0() == node
-						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(),
-							CalHighlightingConfiguration.GLOBAL_VARIABLE_REFERENCE_ID);
+				//} else if (ga.getAstAssignParameterAccess().getVarAssignment_0().  getNameIDTerminalRuleCall_0_0() == node
+				//		.getGrammarElement()) {
+				//	acceptor.addPosition(node.getOffset(), node.getLength(),
+				//			CalHighlightingConfiguration.GLOBAL_VARIABLE_REFERENCE_ID);
 				} else if (ga.getAstAnnotationAccess().getNameIDTerminalRuleCall_1_0() == node.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							CalHighlightingConfiguration.ANNOTATIONS_ID);

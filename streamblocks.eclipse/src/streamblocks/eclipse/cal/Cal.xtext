@@ -109,7 +109,7 @@ QualifiedNameWithWildCard:
 AstNetwork:
 	{AstNetwork}
 	'network' name=ID
-	'(' (parameters+=AstParameter (',' parameters+=AstParameter)*)? ')'
+	'(' (parameters+=FormalParameter (',' parameters+=FormalParameter)*)? ')'
 	(inputs+=AstPort (',' inputs+=AstPort)*)? '==>'
 	(outputs+=AstPort (',' outputs+=AstPort)*)? ':'
 	('var'
@@ -133,7 +133,16 @@ AstEntityInstanceExpr:
 	type=[AstEntity|QualifiedName] '(' (parameters+=AstAssignParameter (',' parameters+=AstAssignParameter)*)? ')';
 
 AstAssignParameter:
+	var = AstAssignVarParameter
+	|
+	type = AstAssignTypeParameter
+;
+
+AstAssignVarParameter:
 	name=ID "=" value=AstExpression;
+
+AstAssignTypeParameter:
+	name=ID ":" value=AstType;
 
 AstEntityIfExpr:
 	'if'
@@ -222,7 +231,7 @@ AstTuple returns AstTaggedTuple:
 AstActor:
 	{AstActor}
 	'actor' name=ID
-	'(' (parameters+=AstParameter (',' parameters+=AstParameter)*)? ')'
+	'(' (parameters+=FormalParameter (',' parameters+=FormalParameter)*)? ')'
 	(inputs+=AstPort (',' inputs+=AstPort)*)? '==>'
 	(outputs+=AstPort (',' outputs+=AstPort)*)? ':'
 	
@@ -295,6 +304,16 @@ AstExternalProcedure:
 
 AstParameter returns AstVariable:
 	AstVariableDeclaration ('=' value=AstExpression)?;
+	
+AstTypeParameter returns AstTypeUser:
+	'type' name=ID
+;
+
+FormalParameter:
+	typeParam = AstTypeParameter
+	|
+	varParam = AstParameter
+;
 
 AstStateVariable returns AstVariable:
 	AstValuedVariableDeclaration ';';
@@ -314,7 +333,7 @@ AstInvariant:
 AstExternalActor:
 	{AstExternalActor}
 	'external' 'actor' name=ID
-	'(' (parameters+=AstParameter (',' parameters+=AstParameter)*)? ')'
+	'(' (parameters+=FormalParameter (',' parameters+=FormalParameter)*)? ')'
 	(inputs+=AstPort (',' inputs+=AstPort)*)? '==>'
 	(outputs+=AstPort (',' outputs+=AstPort)*)? ';';
 

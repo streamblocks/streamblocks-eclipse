@@ -47,6 +47,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
 import streamblocks.eclipse.cal.cal.AstAction;
 import streamblocks.eclipse.cal.cal.AstActor;
+import streamblocks.eclipse.cal.cal.AstEntityListExpr;
 import streamblocks.eclipse.cal.cal.AstEntityVariable;
 import streamblocks.eclipse.cal.cal.AstExpressionAlternative;
 import streamblocks.eclipse.cal.cal.AstExpressionList;
@@ -216,6 +217,7 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		EObject cter = procedure.eContainer();
 		return Scopes.scopeFor(elements, getScope(cter, reference));
 	}
+	
 
 	public IScope scope_AstVariable(AstStatementForeach foreach, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
@@ -226,6 +228,19 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(variables, getScope(foreach.eContainer(), reference));
 	}
 
+	
+	public IScope scope_AstVariable(AstEntityListExpr entityList, EReference reference) {
+		List<AstVariable> variables = new ArrayList<AstVariable>();
+		if(!entityList.getGenerators().isEmpty()) {
+			for (AstGenerator g : entityList.getGenerators()) {
+				variables.add(g.getVariable());
+			}
+		}
+		
+
+		return Scopes.scopeFor(variables, getScope(entityList.eContainer(), reference));
+	}
+	
 	public IScope scope_AstVariable(AstStructureStatementForeach foreach, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
 		for (AstForeachGenerator g : foreach.getGenerators()) {

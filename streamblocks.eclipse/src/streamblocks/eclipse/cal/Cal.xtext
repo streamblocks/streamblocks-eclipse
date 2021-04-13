@@ -113,8 +113,8 @@ AstNetwork:
 	(inputs+=AstPort (',' inputs+=AstPort)*)? '==>'
 	(outputs+=AstPort (',' outputs+=AstPort)*)? ':'
 	('var'
-	variables+=AstValuedVariableDeclaration ';'
-	(variables+=AstValuedVariableDeclaration ';')*)?
+	variables+=AstConstantNetworkVariable
+	(variables+=AstConstantNetworkVariable)*)?
 	'entities'
 	(entities+=AstEntityDeclaration)+
 	(structure=AstStructure)?
@@ -154,7 +154,8 @@ AstEntityIfExpr:
 	'end';
 
 AstEntityListExpr:
-	'[' exprs+=AstEntityExpr (',' exprs+=AstEntityExpr)* (':' generator=AstGenerator)? ']';
+	'[' expressions+=AstEntityExpr (',' expressions+=AstEntityExpr)*
+	(':' generators+=AstGenerator (',' generators+=AstGenerator)*)? ']';
 
 	// -- AstStructure	
 AstStructure:
@@ -236,8 +237,8 @@ AstActor:
 	(outputs+=AstPort (',' outputs+=AstPort)*)? ':'
 	
 	
-	(functions+=AstFunction
-	| procedures+=AstProcedure
+	(functions+=(AstFunction | AstExternalFunction)
+	| procedures+=(AstProcedure | AstExternalProcedure)
 	| invariants+=AstInvariant
 	| actions+=AstAction
 	| processes+=AstProcessDescription
@@ -272,7 +273,7 @@ AstFunction returns AstVariable:
 	expression=AstExpression)?
 	'end';
 
-AstExternalFunction:
+AstExternalFunction returns AstVariable:
 	{AstFunction}
 	(annotations+=AstAnnotation)*
 	'external' 'function' name=ID
@@ -294,7 +295,7 @@ AstProcedure returns AstVariable:
 	(statements+=AstStatement)*)?
 	('end');
 
-AstExternalProcedure:
+AstExternalProcedure returns AstVariable:
 	{AstProcedure}
 	(annotations+=AstAnnotation)*
 	'external' 'procedure' name=ID
@@ -760,6 +761,11 @@ AstVariableDeclaration returns AstVariable:
 
 AstValuedVariableDeclaration returns AstVariable:
 	AstVariableDeclaration ((constant?='=' | ':=') value=AstExpression)?;
+	
+	
+AstConstantNetworkVariable returns AstVariable:
+	AstConstantVariable | AstFunction
+;
 
 AstMemberAccess:
 	'.' name=ID ('[' memberIndex+=AstExpression ']')*;

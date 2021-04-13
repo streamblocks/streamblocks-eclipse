@@ -128,7 +128,7 @@ public class CalProposalProvider extends AbstractCalProposalProvider {
 			}
 		} else if (entity instanceof AstEntityListExpr) {
 			AstEntityListExpr instance = (AstEntityListExpr) entity;
-			for (AstEntityExpr e : instance.getExprs()) {
+			for (AstEntityExpr e : instance.getExpressions()) {
 				proposals.addAll(completeAstStructureStatementConnection(isInput, e, context));
 			}
 		} else {

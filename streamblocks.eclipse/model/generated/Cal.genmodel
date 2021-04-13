@@ -82,8 +82,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityIfExpr/falseEntity"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstEntityListExpr">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityListExpr/exprs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityListExpr/generator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityListExpr/expressions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityListExpr/generators"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstStructure">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructure/connections"/>
@@ -162,8 +162,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstPort/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstPort/name"/>
     </genClasses>
-    <genClasses ecoreClass="Cal.ecore#//AstExternalFunction"/>
-    <genClasses ecoreClass="Cal.ecore#//AstExternalProcedure"/>
     <genClasses ecoreClass="Cal.ecore#//FormalParameter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//FormalParameter/typeParam"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//FormalParameter/varParam"/>

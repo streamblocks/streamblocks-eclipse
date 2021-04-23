@@ -72,14 +72,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//AstEntityExpr"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
-        eType="#//AstAttribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AstEntityExpr"/>
   <eClassifiers xsi:type="ecore:EClass" name="AstEntityInstanceExpr" eSuperTypes="#//AstEntityExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//AstEntity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//AstAssignParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
+        eType="#//AstAttribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AstAssignParameter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//AstAssignVarParameter"

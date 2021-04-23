@@ -57,12 +57,12 @@
     <genClasses ecoreClass="Cal.ecore#//AstEntityVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstEntityVariable/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityVariable/entity"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityVariable/attribute"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstEntityExpr"/>
     <genClasses ecoreClass="Cal.ecore#//AstEntityInstanceExpr">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityInstanceExpr/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityInstanceExpr/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntityInstanceExpr/attribute"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstAssignParameter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstAssignParameter/var"/>

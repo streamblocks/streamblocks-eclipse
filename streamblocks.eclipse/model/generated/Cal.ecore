@@ -5,7 +5,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="CompilationUnit"/>
   <eClassifiers xsi:type="ecore:EClass" name="AstPackage" eSuperTypes="#//CompilationUnit"/>
   <eClassifiers xsi:type="ecore:EClass" name="AstUnit"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AstNamespace" eSuperTypes="#//CompilationUnit #//AstPackage #//AstUnit">
+  <eClassifiers xsi:type="ecore:EClass" name="AstNamespace" eSuperTypes="#//CompilationUnit #//AstPackage #//AstUnit #//AstDefaultNamespace">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="rvc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
@@ -29,6 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="namespaces" upperBound="-1"
         eType="#//AstNamespace" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AstDefaultNamespace" eSuperTypes="#//CompilationUnit"/>
   <eClassifiers xsi:type="ecore:EClass" name="AstEntity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//AstAnnotation" containment="true"/>
@@ -121,10 +122,12 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fromIndexes" upperBound="-1"
         eType="#//AstExpression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outPort" eType="#//AstPort"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//AstEntityVariableReference"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toIndexes" upperBound="-1"
+        eType="#//AstExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inPort" eType="#//AstPort"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
         eType="#//AstAttribute" containment="true"/>
   </eClassifiers>

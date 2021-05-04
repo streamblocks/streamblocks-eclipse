@@ -28,6 +28,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstNamespace/typedefs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstNamespace/namespaces"/>
     </genClasses>
+    <genClasses ecoreClass="Cal.ecore#//AstDefaultNamespace"/>
     <genClasses ecoreClass="Cal.ecore#//AstEntity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntity/annotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstEntity/actor"/>
@@ -92,9 +93,10 @@
     <genClasses ecoreClass="Cal.ecore#//AstStructureStatementConnection">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/from"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/fromIndexes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstStructureStatementConnection/outPort"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/outPort"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/to"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cal.ecore#//AstStructureStatementConnection/inPort"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/toIndexes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/inPort"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cal.ecore#//AstStructureStatementConnection/attribute"/>
     </genClasses>
     <genClasses ecoreClass="Cal.ecore#//AstEntityVariableReference">

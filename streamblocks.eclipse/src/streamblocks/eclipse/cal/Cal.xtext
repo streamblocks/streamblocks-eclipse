@@ -42,7 +42,7 @@ generate cal "https://github.com/streamblocks/streamblocks-eclipse/cal/Cal"
 // RVC compatibility layer
 // -- /////////////////////////////////////////////////////////////////////////////
 CompilationUnit:
-	(AstPackage | AstNamespace);
+	(AstPackage | AstNamespace | AstDefaultNamespace);
 
 AstPackage:
 	{AstNamespace}
@@ -75,7 +75,19 @@ AstNamespace:
 	| entities+=AstEntity
 	| namespaces+=AstNamespace)*
 	'end';
-
+	
+AstDefaultNamespace:
+	{AstNamespace}
+	(functions+=AstFunction
+	| procedures+=AstProcedure	
+	| variables+=AstConstantVariable
+	| externals+=(AstExternalVariable | AstExternalFunction | AstExternalProcedure)
+	| typedefs+=AstTypeDefinition
+	| imports+=Import
+	| entities+=AstEntity
+	| namespaces+=AstNamespace)*
+	;
+	
 AstEntity:
 	(annotations+=AstAnnotation)*
 	actor=AstAbstractActor;
@@ -166,9 +178,9 @@ AstStructureStatement:
 	AstStructureStatementConnection | AstStructureStatementForeach | AstStructureStatementIf;
 
 AstStructureStatementConnection:
-	(from=AstEntityVariableReference ('[' fromIndexes+=AstExpression ']')* '.')? outPort=ID
+	(from=AstEntityVariableReference ('[' fromIndexes+=AstExpression ']')* '.')? outPort=[AstPort]
 	'-->'
-	(to=AstEntityVariableReference ('[' fromIndexes+=AstExpression ']')* '.')? inPort=ID ('{'
+	(to=AstEntityVariableReference ('[' toIndexes+=AstExpression ']')* '.')? inPort=[AstPort] ('{'
 	(attribute+=AstAttribute)* '}')? ';';
 
 AstEntityVariableReference:

@@ -45,8 +45,13 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
+import streamblocks.eclipse.cal.cal.AstAbstractActor;
 import streamblocks.eclipse.cal.cal.AstAction;
 import streamblocks.eclipse.cal.cal.AstActor;
+import streamblocks.eclipse.cal.cal.AstEntity;
+import streamblocks.eclipse.cal.cal.AstEntityExpr;
+import streamblocks.eclipse.cal.cal.AstEntityIfExpr;
+import streamblocks.eclipse.cal.cal.AstEntityInstanceExpr;
 import streamblocks.eclipse.cal.cal.AstEntityListExpr;
 import streamblocks.eclipse.cal.cal.AstEntityVariable;
 import streamblocks.eclipse.cal.cal.AstExpressionAlternative;
@@ -58,6 +63,7 @@ import streamblocks.eclipse.cal.cal.AstInputPattern;
 import streamblocks.eclipse.cal.cal.AstNamespace;
 import streamblocks.eclipse.cal.cal.AstNetwork;
 import streamblocks.eclipse.cal.cal.AstPattern;
+import streamblocks.eclipse.cal.cal.AstPort;
 import streamblocks.eclipse.cal.cal.AstProcedure;
 import streamblocks.eclipse.cal.cal.AstStatementAlternative;
 import streamblocks.eclipse.cal.cal.AstStatementBlock;
@@ -103,6 +109,37 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(actor.getInputs(), getScope(actor, reference));
 	}
 
+	public IScope scope_AstStructureStatementConnection_outPort(AstStructureStatementConnection connection,
+			EReference reference) {
+		AstNetwork network = EcoreUtil2.getContainerOfType(connection, AstNetwork.class);
+		List<AstPort> elements = new ArrayList<AstPort>();
+		elements.addAll(network.getInputs());
+
+		if (connection.getFrom() != null) {
+			AstEntityVariable actor = connection.getFrom().getVariable();
+			AstEntityExpr entity = actor.getEntity();
+
+			elements.addAll(getPorts(false, entity));
+		}
+
+		return Scopes.scopeFor(elements, getScope(network, reference));
+	}
+
+	public IScope scope_AstStructureStatementConnection_inPort(AstStructureStatementConnection connection,
+			EReference reference) {
+		AstNetwork network = EcoreUtil2.getContainerOfType(connection, AstNetwork.class);
+		List<AstPort> elements = new ArrayList<AstPort>();
+		elements.addAll(network.getOutputs());
+
+		if (connection.getTo() != null) {
+			AstEntityVariable actor = connection.getTo().getVariable();
+			AstEntityExpr entity = actor.getEntity();
+
+			elements.addAll(getPorts(true, entity));
+		}
+		return Scopes.scopeFor(elements, getScope(network, reference));
+	}
+
 	public IScope scope_AstStatementWrite_port(AstStatementWrite write, EReference reference) {
 		AstActor actor = EcoreUtil2.getContainerOfType(write, AstActor.class);
 		return Scopes.scopeFor(actor.getOutputs(), getScope(actor, reference));
@@ -132,9 +169,9 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_AstVariable(AstActor actor, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
-		
-		for(FormalParameter param: actor.getParameters()) {
-			if(param.getVarParam() != null) {
+
+		for (FormalParameter param : actor.getParameters()) {
+			if (param.getVarParam() != null) {
 				elements.add(param.getVarParam());
 			}
 		}
@@ -148,8 +185,8 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		AstNetwork network = (AstNetwork) decl.eContainer();
 		List<AstVariable> elements = new ArrayList<AstVariable>();
 		elements.addAll(network.getVariables());
-		for(FormalParameter param: network.getParameters()) {
-			if(param.getVarParam() != null) {
+		for (FormalParameter param : network.getParameters()) {
+			if (param.getVarParam() != null) {
 				elements.add(param.getVarParam());
 			}
 		}
@@ -158,8 +195,8 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope scope_AstVariable(AstNetwork network, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
-		for(FormalParameter param: network.getParameters()) {
-			if(param.getVarParam() != null) {
+		for (FormalParameter param : network.getParameters()) {
+			if (param.getVarParam() != null) {
 				elements.add(param.getVarParam());
 			}
 		}
@@ -167,30 +204,29 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 		return Scopes.scopeFor(elements, delegateGetScope(network, reference));
 	}
-	
+
 	public IScope scope_AstTypeUser(AstNetwork network, EReference reference) {
 		List<AstTypeUser> elements = new ArrayList<AstTypeUser>();
-		for(FormalParameter param: network.getParameters()) {
-			if(param.getTypeParam() != null) {
-				elements.add(param.getTypeParam()); 
+		for (FormalParameter param : network.getParameters()) {
+			if (param.getTypeParam() != null) {
+				elements.add(param.getTypeParam());
 			}
 		}
 
 		return Scopes.scopeFor(elements, delegateGetScope(network, reference));
 	}
-	
+
 	public IScope scope_AstTypeUser(AstActor actor, EReference reference) {
 		List<AstTypeUser> elements = new ArrayList<AstTypeUser>();
-		for(FormalParameter param: actor.getParameters()) {
-			if(param.getTypeParam() != null) {
-				elements.add(param.getTypeParam()); 
+		for (FormalParameter param : actor.getParameters()) {
+			if (param.getTypeParam() != null) {
+				elements.add(param.getTypeParam());
 			}
 		}
 
 		return Scopes.scopeFor(elements, delegateGetScope(actor, reference));
 	}
-	
-	
+
 	public IScope scope_AstVariable(AstExpressionList list, EReference reference) {
 		List<AstVariable> elements = new ArrayList<AstVariable>();
 		for (AstGenerator generator : list.getGenerators()) {
@@ -217,7 +253,6 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		EObject cter = procedure.eContainer();
 		return Scopes.scopeFor(elements, getScope(cter, reference));
 	}
-	
 
 	public IScope scope_AstVariable(AstStatementForeach foreach, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
@@ -228,19 +263,17 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		return Scopes.scopeFor(variables, getScope(foreach.eContainer(), reference));
 	}
 
-	
 	public IScope scope_AstVariable(AstEntityListExpr entityList, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
-		if(!entityList.getGenerators().isEmpty()) {
+		if (!entityList.getGenerators().isEmpty()) {
 			for (AstGenerator g : entityList.getGenerators()) {
 				variables.add(g.getVariable());
 			}
 		}
-		
 
 		return Scopes.scopeFor(variables, getScope(entityList.eContainer(), reference));
 	}
-	
+
 	public IScope scope_AstVariable(AstStructureStatementForeach foreach, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
 		for (AstForeachGenerator g : foreach.getGenerators()) {
@@ -267,8 +300,7 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 
 		return Scopes.scopeFor(typeParameters, getScope(typedef, reference));
 	}
-	
-	
+
 	public IScope scope_AstVariable(AstTaggedTuple tuple, EReference reference) {
 		List<AstVariable> variables = new ArrayList<AstVariable>();
 		AstTypeUser typedef = (AstTypeUser) tuple.eContainer();
@@ -292,6 +324,34 @@ public class CalScopeProvider extends AbstractDeclarativeScopeProvider {
 		Util.doPattern(variables, alternative.getPattern());
 
 		return Scopes.scopeFor(variables, getScope(alternative.eContainer(), reference));
+	}
+
+	private List<AstPort> getPorts(Boolean isInput, AstEntityExpr entity) {
+		List<AstPort> ports = new ArrayList<>();
+
+		if (entity instanceof AstEntityInstanceExpr) {
+			AstEntityInstanceExpr instance = (AstEntityInstanceExpr) entity;
+			AstEntity entityType = instance.getType();
+
+			AstAbstractActor actor = entityType.getActor();
+			if (actor == null) {
+				return ports;
+			}
+
+			ports.addAll(isInput ? actor.getInputs() : actor.getOutputs());
+
+		} else if (entity instanceof AstEntityListExpr) {
+			AstEntityListExpr instance = (AstEntityListExpr) entity;
+			for (AstEntityExpr e : instance.getExpressions()) {
+				ports.addAll(getPorts(isInput, e));
+			}
+		} else {
+			AstEntityIfExpr instance = (AstEntityIfExpr) entity;
+			ports.addAll(getPorts(isInput, instance.getTrueEntity()));
+			ports.addAll(getPorts(isInput, instance.getFalseEntity()));
+		}
+
+		return ports;
 	}
 
 }

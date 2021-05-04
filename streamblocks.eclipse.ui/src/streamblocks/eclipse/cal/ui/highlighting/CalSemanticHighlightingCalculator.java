@@ -181,12 +181,12 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 				} else if (ga.getAstTagAccess().getIdentifiersIDTerminalRuleCall_1_1_0() == node.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							CalHighlightingConfiguration.ACTION_TAG_ID);
-				} else if (ga.getAstStructureStatementConnectionAccess().getOutPortIDTerminalRuleCall_1_0() == node
-						.getGrammarElement()) {
+				//} else if (ga.getAstStructureStatementConnectionAccess().getOutPortIDTerminalRuleCall_1_0() == node
+				//		.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.PORT_ID);
-				} else if (ga.getAstStructureStatementConnectionAccess().getInPortIDTerminalRuleCall_4_0() == node
-						.getGrammarElement()) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.PORT_ID);
+				//} else if (ga.getAstStructureStatementConnectionAccess().getInPortIDTerminalRuleCall_4_0() == node
+				//		.getGrammarElement()) {
+				//	acceptor.addPosition(node.getOffset(), node.getLength(), CalHighlightingConfiguration.PORT_ID);
 				} else if (ga.getAstTypeParamAccess().getNameIDTerminalRuleCall_0_0_0() == node.getGrammarElement()) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							CalHighlightingConfiguration.TYPE_PARAMETER_ID);

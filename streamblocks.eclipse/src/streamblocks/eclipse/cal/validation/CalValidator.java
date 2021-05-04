@@ -35,23 +35,28 @@
  */
 package streamblocks.eclipse.cal.validation;
 
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.CheckType;
+
+import com.google.inject.Inject;
+
+import streamblocks.eclipse.cal.cal.AstAbstractActor;
 
 /**
- * This class contains custom validation rules. 
+ * This class contains custom validation rules.
  *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+ * See
+ * https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class CalValidator extends AbstractCalValidator {
-	
-//	public static final String INVALID_NAME = "invalidName";
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					CalPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
-	
+
+	@Inject
+	private WarningValidator warnings;
+
+	@Check(CheckType.NORMAL)
+	public void checkAstAbstractActor(AstAbstractActor entity) {
+		warnings.validate(entity, getChain(), getContext());
+	}
+
 }
+ 

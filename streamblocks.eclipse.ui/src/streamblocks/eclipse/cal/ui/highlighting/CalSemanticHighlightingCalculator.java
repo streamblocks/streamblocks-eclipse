@@ -165,7 +165,11 @@ public class CalSemanticHighlightingCalculator extends DefaultSemanticHighlighti
 						acceptor.addPosition(node.getOffset(), node.getLength(),
 								CalHighlightingConfiguration.ENTITY_DECLARATION_ID);
 					}
-				} else if (ga.getAstVariableDeclarationAccess().getNameIDTerminalRuleCall_2_0() == node
+				} else if (ga.getAstVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0_1_0() == node
+						.getGrammarElement()) {
+					EObject target = helper.resolveElementAt(resource, node.getOffset());
+					variableSemanticHighlighting(target, node, acceptor);
+				} else if (ga.getAstVariableDeclarationAccess().getNameIDTerminalRuleCall_1_1_0_0() == node
 						.getGrammarElement()) {
 					EObject target = helper.resolveElementAt(resource, node.getOffset());
 					variableSemanticHighlighting(target, node, acceptor);
